@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="leftbox">
+
+    <nav>
+      <a id="profile" [class.active]="activeTab === 'profile'"><i class="fa fa-user"
+          (click)="onNavLinkClick($event, 'profile')"></i></a>
+      <a id="payment" [class.active]="activeTab === 'payment'"><i class="fa fa-credit-card"
+          (click)="onNavLinkClick($event, 'payment')"></i></a>
+      <a id="subscription" [class.active]="activeTab === 'subscription'"><i class="fa fa-tv"
+          (click)="onNavLinkClick($event, 'subscription')"></i></a>
+      <a id="privacy" [class.active]="activeTab === 'privacy'"><i class="fa fa-tasks"
+          (click)="onNavLinkClick($event, 'privacy')"></i></a>
+      <a id="settings" [class.active]="activeTab === 'settings'"><i class="fa fa-cog"
+          (click)="onNavLinkClick($event, 'settings')"></i></a>
+    </nav>
+  </div>
+  <div class="rightbox">
+
+    <div class="profile" *ngIf="activeTab === 'profile'">
+      <h1>Personal Info</h1>
+      <h2>Full Name</h2>
+      <p>{{user.name}} <button class="btn" (click)="updateName.toggle($event)" icon="pi pi-image" label="Show">update</button></p>
+      <p-overlayPanel #updateName>
+        <ng-template pTemplate="content">
+          <h4>Full Name</h4>
+          <input type="text" [(ngModel)]="updatedName" placeholder={{user.name}} />
+          <button (click)="printInputText(updatedName)" label="Print to Console">Save</button>
+        </ng-template>
+      </p-overlayPanel>
+
+
+      <h2>Email</h2>
+      <p>{{user.email}}<button class="btn" (click)="updateEmail.toggle($event)" icon="pi pi-image" label="Show">update</button></p>
+      <p-overlayPanel #updateEmail>
+        <ng-template pTemplate="content">
+          <h4>Full Email</h4>
+          <input type="text" [(ngModel)]="updatedEmail" placeholder={{user.email}}  />
+          <button (click)="printInputText(updatedEmail)" label="Print to Console">Save</button>
+        </ng-template>
+      </p-overlayPanel>
+    </div>
+
+    <div class="payment noshow">
+      <ng-container *ngIf="activeTab === 'payment'">
+        <h1>Payment Info</h1>
+        <h2>Payment Method</h2>
+        <p>Mastercard •••• •••• •••• 0000 <button class="btn">update</button></p>
+        <h2>Billing Address</h2>
+        <p>1234 Example Ave | Seattle, WA <button class="btn">change</button></p>
+        <h2>Zipcode</h2>
+        <p>999000</p>
+        <h2>Billing History</h2>
+        <p>2018<button class="btn">view</button></p>
+        <h2>Redeem Gift Subscription </h2>
+        <p><input type="text" placeholder="Enter Gift Code"> <button class="btn">Redeem</button></p>
+      </ng-container>
+    </div>
+
+    <div class="subscription noshow">
+      <ng-container *ngIf="activeTab === 'subscription'">
+        <h1>Your Subscription</h1>
+        <h2>Payment Date</h2>
+        <p>05-15-2018 <button class="btn">pay now</button></p>
+        <h2>Your Next Charge</h2>
+        <p>$8.48<span> includes tax</span></p>
+        <h2>Hulu Base Plan</h2>
+        <p>Limited Commercials <button class="btn">change plan</button></p>
+        <h2>Add-ons</h2>
+        <p>None <button class="btn">manage</button></p>
+        <h2>Monthly Recurring Total </h2>
+        <p>$7.99/month</p>
+      </ng-container>
+    </div>
+
+    <div class="privacy noshow">
+      <ng-container *ngIf="activeTab === 'privacy'">
+        <h1>Privacy Settings</h1>
+        <h2>Manage Email Notifications<button class="btn">manage</button></h2>
+        <p></p>
+        <h2>Manage Privacy Settings<button class="btn">manage</button></h2>
+        <p></p>
+        <h2>View Terms of Use <button class="btn">view</button></h2>
+        <p></p>
+        <h2>Personalize Ad Experience <button class="btn">update</button></h2>
+        <p></p>
+        <h2>Protect Your Account <button class="btn">protect</button></h2>
+        <p></p>
+      </ng-container>
+    </div>
+    <div class="settings noshow">
+      <ng-container *ngIf="activeTab === 'settings'">
+        <h1>Account Settings</h1>
+        <h2>Sync Watchlist to My Stuff<button class="btn">sync</button></h2>
+        <p></p>
+        <h2>Hold Your Subscription<button class="btn">hold</button></h2>
+        <p></p>
+        <h2>Cancel Your Subscription <button class="btn">cancel</button></h2>
+        <p></p>
+        <h2>Your Devices <button class="btn">Manage Devices</button></h2>
+        <p></p>
+        <h2>Referrals <button class="btn">get $10</button></h2>
+        <p></p>
+      </ng-container>
+    </div>
+
+  </div>
+</div>

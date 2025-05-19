@@ -1,0 +1,18 @@
+<form class="search-form">
+  <input type="search" [(ngModel)]="searchText" [value]="!searchText ? '' : selectedIcon" name="searchText"  (keyup.enter)="sendSearchText()"
+    placeholder="Search" class="search-input">
+
+  <button type="button" class="search-button" (click)="sendSearchText()">
+    <i class="fa-solid fa-magnifying-glass fa-flip-horizontal"></i>
+  </button>
+  <div class="search-option">
+    <div #iconDiv *ngFor="let icon of icons" (click)="onIconClick(iconDiv, icon.name);sendSearchText()">
+      <input name="iconType" type="radio" [value]="icon.name" [id]="icon.name" [(ngModel)]="selectedIcon">
+      <label [for]="icon.name">
+        <i class="fa-fw fa {{ icon.icon }}"
+          [ngClass]="{ 'selected': icon.name === selectedIcon && filterSelected }"></i>
+        <span>{{ icon.name }}</span>
+      </label>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,125 @@
+<main>
+  <div class="intro">
+    <h1>An Online Store</h1>
+    <br>
+    <h3>is all you need</h3>
+    <p>
+      Discover the best deals on a wide range of products, all from the comfort
+      of your home.
+    </p>
+    <a class="shop-link" href="#shop-view">sHop now</a>
+  </div>
+  <div class="categories">
+    <section class="testimonials">
+      <div class="bg"></div>
+      <div class="testimonials-wrapper">
+        <div class="testimonial" *ngFor="let testimonial of testimonials" (click)="filterProduct(testimonial.category)">
+          <img [src]="testimonial.imageSrc" [alt]="testimonial.heading + ' image'" />
+          <h3 class="work-heading"> <i xsFaIcon [icon]="testimonial.icon"></i>{{ testimonial.heading }}</h3>
+          <p class="work-text">{{ testimonial.description }}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="about-me">
+    <div class="about-me-text">
+      <h2>About Us</h2>
+      <p>
+        At ONS, we are more than just a store; we are your one-stop destination for quality and style. With a
+        passion for curating the finest products, we aim to enhance your shopping experience. Our dedicated team strives
+        to provide exceptional service and a diverse selection of items that cater to your unique tastes and needs. From
+        fashion-forward apparel to innovative gadgets, ONS is where your shopping desires come to life. Join us
+        on this journey, and let us help you discover the perfect blend of convenience and luxury
+      </p>
+    </div>
+    <img src="assets/shopIntro.webp" alt="IntroImage" />
+  </div>
+  <!-- </main>
+
+<section class="hero1">
+  <div class="container">
+    <div>
+      <h1>Barkin' Baxter's Treat Truck</h1>
+      <p>Poppin' Up Soon at a Dog Park Near You!</p>
+    </div>
+    <img src="https://assets.codepen.io/619833/0_3.webp" alt="" />
+  </div>
+
+</section>
+
+<section class="testimonials">
+  <div class="bg"></div>
+  <h2>What Our Fans Are Saying</h2>
+  <div class="testimonials-wrapper">
+    <div class="testimonial">
+      <img src="https://assets.codepen.io/619833/testimonial_1.png" alt="" />
+
+      <h3 class="work-heading"> <i class="fas fa-utensils"></i>Groceries and Food</h3>
+      <p class="work-text">
+        Shop Essential Groceries & Food Online. Convenience at Your Fingertips.
+      </p>
+
+    </div>
+    <div class="testimonial">
+      <img src="https://assets.codepen.io/619833/testimonial_3.png" alt="" />
+
+      <h3 class="work-heading"> <i class="fas fa-shirt"></i>Apparel and Fashion</h3>
+      <p class="work-text">
+        Explore Latest Apparel & Fashion Online. Redefine Your Unique Style.
+      </p>
+    </div>
+    <div class="testimonial">
+      <img src="https://assets.codepen.io/619833/testimonial_2.png" alt="" />
+
+      <h3 class="work-heading"> <i class="fas fa-bolt"></i>Electronics and Tech</h3>
+      <p class="work-text">
+        Explore Cutting-Edge Electronics Online. Upgrade Your Tech Today.
+      </p>
+    </div>
+    <div class="testimonial">
+      <img src="https://assets.codepen.io/619833/testimonial_2.png" alt="" />
+
+      <h3 class="work-heading"> <i class="fas fa-bolt"></i>Home and Furniture</h3>
+      <p class="work-text">
+        Discover Home & Furniture Online. Elevate Comfort and Style.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="hero2">
+  <h2>What's on the Menu This Weekend?</h2>
+</section>
+
+
+<section class="menu">
+
+  <div class="menu-item">
+    <img src="https://assets.codepen.io/619833/food_bowl_4.png" alt="" />
+    <h3>Friday</h3>
+    <ul>
+      <li>Salmon Snackers</li>
+      <li>Veggie Patch Poppers</li>
+      <li>Chicken Pawsta Bites</li>
+    </ul>
+  </div>
+  <div class="menu-item">
+    <img src="https://assets.codepen.io/619833/food_bowl_6.png" alt="" />
+    <h3>Saturday</h3>
+    <ul>
+      <li>Peanut Butter Pupcakes</li>
+      <li>Turkey Tenderloin Twists</li>
+      <li>Carrot Cake Pupsicles</li>
+    </ul>
+  </div>
+  <div class="menu-item">
+    <img src="https://assets.codepen.io/619833/food_bowl_3.png" alt="" />
+    <h3>Sunday</h3>
+    <ul>
+      <li>Sweet Potato Surprise</li>
+      <li>Beefy Bites</li>
+      <li>Pumpkin Pup Pops</li>
+    </ul>
+  </div>
+</section> -->

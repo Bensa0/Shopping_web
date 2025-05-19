@@ -1,0 +1,113 @@
+.mainContainer{
+ padding: 30px;
+ margin-left: 50px;
+}
+/* Custom table styles */
+.custom-table-style {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Header cell styles */
+.header-cell {
+  text-align: left;
+  background-color: #f2f2f2;
+  font-weight: bold;
+  gap: 8px;
+}
+/* Component's stylesheet */
+.center {
+  text-align: center;
+}
+
+
+/* Body cell styles */
+.body-cell {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Buttons container styles */
+.buttons-cell {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: -10px;
+  gap: 8px;
+  flex-direction: column;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 8px;
+}
+
+.signin-container {
+  width: 300px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+form {
+  border: 1px solid #000;
+  padding: 20px;
+
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.input-container label,
+.checkbox-container label {
+  display: flex;
+  margin-bottom: 5px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-container input[type="email"],
+.input-container input[type="password"],
+.input-container input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: auto;
+  margin-left: 10px;
+}
+
+.button-container {
+  text-align: center;
+}
+
+.submit-button {
+  background-color: #5500cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.submit-button:hover {
+  background-color: #672ebb;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}

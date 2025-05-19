@@ -1,0 +1,114 @@
+<div class="container">
+  <!-- <div class="box-container header-container">
+
+    <h1>My Shopping List</h1>
+  </div> -->
+  <!-- <div class="box-container">
+  <div class="box margin-right" id="shopping-list">
+    <h1>My Shopping List</h1>
+
+    <div id="errorMessage">
+      <i class="icon-cross"></i>Please enter all inputs!
+    </div>
+
+    <div id="successMessage">
+      <i class="icon-checkmark"></i>Item added to shopping list!
+    </div>
+
+    <div class="half margin-right">
+      <input type="text" class="searchButton" placeholder="Item Name" [(ngModel)]="itemName" autofocus required />
+    </div>
+    <div class="half margin-right">
+      <input type="number" class="searchButton margin-right" placeholder="Quantity" [(ngModel)]="itemQuantity"
+        required />
+    </div>
+    <div class="dollar half">
+      <span>$</span>
+      <input type="number" class="searchButton" placeholder="Price (each)" [(ngModel)]="itemPrice" required />
+    </div>
+  </div>
+</div> -->
+
+  <!-- <button id="addItem" (click)="addItem()">Add Item</button> -->
+
+  <!-- <div class="list">
+    <table cellspacing="0">
+      <tr class="table-header">
+        <td></td>
+        <td class="left">Item Name</td>
+        <td class="left">Description</td>
+        <td class="left">Price</td>
+        <td class="center">Edit</td>
+        <td class="center">Delete</td>
+      </tr>
+      <tr *ngFor="let item of sortedProducts()" [ngClass]="{ selected: item.checked }">
+        <td>
+          <input *ngIf="!item.checked" [(ngModel)]="item.checked" (change)="add(item)" type="checkbox" />
+        </td>
+        <td>{{ item.name }}</td>
+        <td class="left">{{ item.description }}</td>
+        <td>{{ item.price | currency }}</td>
+        <td class="center">edit<i class="fa-solid fa-circle-xmark" ></i></td>
+        <td class="center"><i class="fa-solid fa-circle-xmark" (click)="remove(item)"></i></td>
+
+      </tr>
+    </table>
+    <div *ngIf="products.length === 0" class="center">
+      Your shopping list is empty.
+    </div>
+
+    <button id= "addItem"  (click)="clearAll(products)">Clear Shopping List</button>
+  </div>
+</div> -->
+
+  <div class="box-inv-container">
+    <div class="box" id="inventory">
+      <h1>Inventory</h1>
+      <div class="list ">
+        <table cellspacing="0">
+          <tr class="table-header">
+            <td class="left">Item Name</td>
+            <td class="center">Quantity</td>
+            <td class="center">Price</td>
+            <!-- <td class="center">Category</td> -->
+            <td class="center">Delete</td>
+          </tr>
+
+          <tr *ngFor="let item of inventory">
+            <td>{{ item.product.name }}</td>
+
+            <td class="center inline">
+              <span style="margin: 5px;">{{ item.quantity }}</span>
+              <span class="caretArrows">
+                <i [ngClass]="{'fa-solid fa-caret-up': true, 'fa-bounce': isUpIconBouncing}"
+                  (click)="bounceUpIconOnce(item)"></i>
+                <i [ngClass]="{'fa-solid fa-caret-down': true, 'fa-bounce-down': isDownIconBouncing}"
+                  (click)="bounceDownIconOnce(item)"></i>
+              </span>
+            </td>
+            <td class="center">{{ item.product.price | currency }}</td>
+            <td class="center">
+              <i class="fa-solid fa-circle-xmark" (click)="removeInventory(item)"></i>
+            </td>
+          </tr>
+        </table>
+        <div *ngIf="inventory.length === 0" class="center inv-table">
+          Your inventory is empty.
+        </div>
+        <div class="cost cf">
+          <span class="left">Total Cost:</span>
+          <span class="right" [ngClass]="{ total: selection.length !== 0 }">{{
+            getInventoryTotal() | currency
+            }}</span>
+        </div>
+        <div class="table-buttuns">
+          <button class="clear" (click)="clearAll(inventory)">
+            Clear Inventory
+          </button>
+          <button class="clear" (click)="saveInventory(inventory)">
+            Confirm Purchase
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

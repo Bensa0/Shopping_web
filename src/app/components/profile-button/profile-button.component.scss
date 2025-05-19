@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Button Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-button {
+  background-color: #8136f1; /* Change to your desired background color */
+  color: #fff; /* Change to your desired text color */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Dropdown Content Styles */
+/* Dropdown Content Styles */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9; /* Change to your desired background color */
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 100%; /* Position the dropdown content to the left */
+  top: 0;
+  transform: translate(23px, 30px);
+  border-radius: 4px;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333; /* Change to your desired text color */
+  border-radius: 4px;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd; /* Change to your desired hover background color */
+}
+
+/* Show the dropdown content when the button is clicked */
+.dropdown.active .dropdown-content {
+  display: block;
+}

@@ -1,0 +1,19 @@
+<header class="header">
+  <nav>
+    <div class="logo">
+      <a href="index.html">Lo<span>G</span>o</a>
+    </div>
+    <div>
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon">&#9776;</label>
+      <ul class="menu">
+        <li *ngFor="let data of activeHeader" routerLinkActive="active">
+          <a *ngIf="isLoggedIn() || data.header !== 'Shop Cart'" (click)="toggleActiveHeader($event, data)"
+            [routerLink]="data.href">{{ data.header }}</a>
+        </li>
+        <li *ngIf="currentLevel > 0" (click)="goBack()"><a>Back</a></li>
+        <li> <xs-profile-button></xs-profile-button></li>
+      </ul>
+    </div>
+  </nav>
+</header>

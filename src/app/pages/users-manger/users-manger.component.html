@@ -1,0 +1,192 @@
+<div class="mainContainer">
+  <!-- Skeleton view -->
+  <p-table *ngIf="isLoading" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Password</th>
+        <th class="header-cell">
+          <div class="add-button-container">
+            <p-button (onClick)="HandleOnAddClick()" styleClass="p-button-secondary p-button-sm">
+              <i class="fa-solid fa-user-plus"></i>Add</p-button>
+
+            <p-button (onClick)="fetchUsers()" styleClass="p-button-secondary p-button-sm">
+              <i class="fa-solid fa-user-plus"></i>Generate Tree</p-button>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body">
+      <tr>
+        <td><p-skeleton></p-skeleton></td>
+        <td><p-skeleton></p-skeleton></td>
+        <td><p-skeleton></p-skeleton></td>
+        <td><p-skeleton></p-skeleton></td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Actual data -->
+  <p-treeTable *ngIf="!isLoading" [value]="users" [scrollable]="true"
+    [tableStyle]="{ 'min-width': '50rem', 'border-collapse': 'collapse' }" styleClass="custom-table-style">
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let key of userKeys" class="header-cell">{{ key }}</th>
+        <th class="header-cell buttons-cell">
+          <p-button [ngStyle]="marginStyles" (onClick)="HandleOnAddClick()" styleClass="p-button-secondary p-button-sm">
+            <i class="fa-solid fa-user-plus"></i>Add</p-button>
+          <div class="add-button-container">
+            <p-button (onClick)="fetchUsers()" styleClass="p-button-secondary p-button-sm">
+              <i class="fa-solid fa-user-plus"></i>Generate Tree</p-button>
+            <p-button (onClick)="generateUser()" styleClass="p-button-secondary p-button-sm">
+              <i class="fa-solid fa-user-plus"></i>Generate User</p-button>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+      <tr [ttRow]="rowNode">
+        <td *ngFor="let key of userKeys" class="body-cell max-width-cell">
+          <p-treeTableToggler *ngIf="key === userKeys[0]" [rowNode]="rowNode"></p-treeTableToggler>
+
+          <ng-container *ngIf="key === 'roles' && rowData[key]">
+            <ng-container *ngFor="let role of rowData[key]; let last = last">
+              {{ role.name }} <!-- Replace 'propertyName' with the actual property you want to display -->
+              <span *ngIf="!last">, </span>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="key !== 'roles'">
+            {{ maskPassword(key, rowData[key]) }}
+          </ng-container>
+        </td>
+
+        <td class="body-cell buttons-cell">
+          <div class="buttons-container">
+            <p-button (onClick)="HandleOnEditClick(rowData)" styleClass="p-button-secondary p-button-sm">
+              <i class="fa-solid fa-user-plus"></i>Edit</p-button>
+            <p-button (onClick)="HandleOnDeleteClick(rowNode)" styleClass="p-button-secondary p-button-sm">
+              <i class="fa-solid fa-user-plus"></i>Delete</p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-treeTable>
+</div>
+
+<!-- Add User Modal Dialog -->
+<div *ngIf="showAddForm" class="modal show d-block" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Employee</h5>
+        <button type="button" class="close" (click)="closeAddForm()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddUser(addForm)">
+          <div class="form-group input-container">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" ngModel required />
+          </div>
+
+          <div class="form-group input-container">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" ngModel required />
+          </div>
+
+          <div class="form-group input-container">
+            <label for="role">Role</label>
+            <select id="role" name="role" ngModel required>
+              <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+
+            </select>
+          </div>
+
+
+          <div class="form-group input-container">
+            <label for="password">Password</label>
+            <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" ngModel required />
+          </div>
+
+
+          <div class="form-group checkbox-container">
+            <label for="showPassword">
+              <input type="checkbox" id="showPassword" name="showPassword" [(ngModel)]="showPassword" />
+              Show Password
+            </label>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeAddForm()">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit User Modal Dialog -->
+<div *ngIf="showEditForm" class="modal show d-block" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit User</h5>
+        <button type="button" class="close" (click)="closeEditForm()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form (ngSubmit)="onEditUser(editForm.value)" #editForm="ngForm">
+          <input type="hidden" name="id" [(ngModel)]="selectedUser.id" /><br />
+
+          <div class="form-group input-container">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" [(ngModel)]="selectedUser.name" required />
+          </div>
+
+          <div class="form-group input-container">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" [(ngModel)]="selectedUser.email" required />
+          </div>
+          <div class="form-group input-container">
+            <label for="role">Role</label>
+            <select id="role" name="role" [(ngModel)]="selectedRole" required>
+              <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+            </select>
+          </div>
+
+
+
+          <div class="form-group input-container">
+            <label for="password">Password</label>
+            <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
+                   [(ngModel)]="selectedUser.password" required />
+          </div>
+
+          <div class="form-group checkbox-container">
+            <label for="showPassword">
+              <input type="checkbox" id="showPassword" name="showPassword" [(ngModel)]="showPassword" />
+              Show Password
+            </label>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" (click)="closeEditForm()">
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

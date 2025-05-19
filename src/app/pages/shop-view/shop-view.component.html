@@ -1,0 +1,78 @@
+<header id="site-header">
+  <div class="container center">
+    <h1>Shopping cart</h1>
+  </div>
+</header>
+    <div class="filter-section">
+
+      <button class="filter-button" *ngFor="let category of categories" (click)="applyFilter(category)">
+        {{ category }}
+      </button>
+      <button class="clear-filter-button" (click)="clearFilter()">Clear Filter</button>
+    </div>
+
+
+<div class="container">
+  <xs-search-form (searchTextChange)="handleSearchTextChange($event)"></xs-search-form>
+  <!-- <div class="search-container">
+    <input type="text" [(ngModel)]="searchText" placeholder="Search products" class="search-input" />
+  </div> -->
+
+  <section id="cart">
+    <ng-container *ngIf="cart.orderItem">
+      <article class="product" *ngFor="
+          let orderItem of cart.orderItem | filter : searchText;
+          let i = index
+        ">
+        <header>
+          <a class="remove" (click)="removeProduct(i)">
+            <img src="http://www.astudio.si/preview/blockedwp/wp-content/uploads/2012/08/1.jpg" alt="" />
+            <h3>Remove product</h3>
+          </a>
+        </header>
+
+        <div class="content-info">
+          <div class="product-info">
+            <strong>
+              <h1 class="product-name">
+                <u>{{orderItem.product.name}}</u><span
+                  class="product-category stong-border">{{orderItem.product.category}}</span>
+              </h1>
+            </strong>
+
+            <p class="product-description">
+              {{ orderItem.product.description }}
+            </p>
+          </div>
+        </div>
+
+        <footer class="content">
+          <span class="qt-minus" (click)="decrementQuantity(orderItem)">-</span>
+          <span class="qt">{{ orderItem.quantity }}</span>
+          <span class="qt-plus" (click)="incrementQuantity(orderItem)">+</span>
+
+          <h2 class="full-price">{{ orderItem.fullPrice }}€</h2>
+
+          <h2 class="price">{{ orderItem.product.price }}€</h2>
+        </footer>
+      </article>
+    </ng-container>
+  </section>
+</div>
+
+<footer id="site-footer">
+  <div class="container clearfix">
+    <!-- <div class="left">
+      <h2 class="subtotal">Subtotal: <span>{{ calculateSubtotal() }}</span>€</h2>
+      <h3 class="tax">Taxes (5%): <span>{{ calculateTax() }}</span>€</h3> -->
+    <!-- <h3 class="shipping">Shipping: <span>{{ shipping }}</span>€</h3>
+    </div> -->
+
+    <div class="center">
+      <h1 class="total">
+        Total: <span>{{ calculateSubtotal() }}</span>€
+      </h1>
+      <a class="btn" (click)="navigateToShop()">Checkout</a>
+    </div>
+  </div>
+</footer>

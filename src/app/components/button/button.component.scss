@@ -1,0 +1,23 @@
+/* Other styles ... */
+
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 23px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #151418;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-to-top-btn:hover {
+  background-color: #8739fa;
+}

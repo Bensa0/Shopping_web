@@ -1,0 +1,11 @@
+<ng-container *ngIf="isLoggedIn() || true">
+  <div class="dropdown" [ngClass]="{ 'active': isDropdownOpen }">
+    <button class="dropdown-button" (click)="toggleDropdown()">
+      <i class="fa-solid fa-caret-down"></i>
+    </button>
+    <div *ngIf="isDropdownOpen" class="dropdown-content">
+      <a href="#profile">Profile</a>
+      <a (click)="logout()">Logout</a>
+    </div>
+  </div>
+</ng-container>
